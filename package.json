@@ -4,7 +4,7 @@
   "description": "The process of building a React component library",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --config ./config/webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/qqqqqcy/build-react-component-library/issues"
   },
-  "homepage": "https://github.com/qqqqqcy/build-react-component-library#readme"
+  "homepage": "https://github.com/qqqqqcy/build-react-component-library#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "webpack": "^4.30.0",
+    "webpack-dev-server": "^3.3.1"
+  }
 }
