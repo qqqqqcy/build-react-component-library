@@ -6,7 +6,7 @@ const App = () => {
     return (
         <div className="App height-100">
             <h1>Hello World !!!</h1>
-            <Button></Button>
+            <Button className="asd"></Button>
         </div>
     );
 };

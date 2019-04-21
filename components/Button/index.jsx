@@ -1,5 +1,5 @@
 import React from "react"
-const Button = () => {
-    return (<button>Buton</button>)
+const Button = (props) => {
+    return (<button {...props}>Buton</button>)
 }
 export default Button
