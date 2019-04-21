@@ -1,3 +1,7 @@
 # js
 config
 node_modules
+
+#compile
+dist
+build

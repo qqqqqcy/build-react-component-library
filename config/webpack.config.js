@@ -1,17 +1,16 @@
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const devMode = process.env.NODE_ENV === 'development';
 module.exports = {
-    entry: {
-        index: path.resolve(__dirname, '../site/index.tsx'),
-    },
+    mode: 'none',
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx', 'scss'],
     },
     // https://juejin.im/post/58293502a0bb9f005767ba2f
-    devtool: 'cheap-module-eval-source-map',
     module: {
         rules: [
             {
@@ -27,9 +26,9 @@ module.exports = {
                 ],
             },
             {
-                test: /\.s([ac])ss$/,
+                test: /\.s?([ac])ss$/,
                 use: [
-                    'style-loader',
+                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
                     {
                         loader: 'postcss-loader',
@@ -58,20 +57,18 @@ module.exports = {
         ],
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Build React Component Library',
-            template: path.resolve(__dirname, '../site/index.html'),
-        }),
         new StyleLintPlugin({
-            configFile: path.resolve(__dirname,"../stylelint.config.js"),
-            context: path.resolve(__dirname,'../components'),
-            files: [
-                '**/*.scss',
-            ],
+            configFile: path.resolve(__dirname, '../stylelint.config.js'),
+            context: path.resolve(__dirname, '../components'),
+            files: ['**/*.scss'],
             failOnError: false,
             emitErrors: true,
             syntax: 'scss',
             quiet: false,
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+            chunkFilename: '[id].css',
         }),
     ],
 };
