@@ -1,8 +1,8 @@
 import React from 'react';
 
-// import { Button } from '../components/index';
-import { Button } from '../dist/index';
-import '../dist/index.css';
+import { Button } from '../components/index';
+// import { Button } from '../dist/index';
+// import '../dist/index.css';
 import './style/index.scss';
 
 const App = () => {
